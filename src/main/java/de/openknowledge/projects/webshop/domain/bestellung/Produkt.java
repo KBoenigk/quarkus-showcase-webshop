@@ -1,37 +1,48 @@
 package de.openknowledge.projects.webshop.domain.bestellung;
 
-import de.openknowledge.projects.webshop.domain.bestellung.filiale.Filiale;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.ValidationException;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Produkt {
+@Entity
+@Table(name = "PRODUKT")
+public class Produkt extends PanacheEntity {
 
+    @Column(name = "NAME", nullable = false, unique = true)
     @NotNull
-    private ProduktName name;
+    private String name;
 
+    @Column(name = "PREIS", nullable = false)
     @NotNull
-    private ProduktPreis preis;
+    private BigDecimal preis;
 
-    private ProduktBeschreibung beschreibung;
+    @Column(name = "BESCHREIBUNG")
+    private String beschreibung;
+
+    protected Produkt() { super(); }
 
     public Produkt(Builder b) {
+        this();
         this.name = b.name;
         this.preis = b.preis;
         this.beschreibung = b.beschreibung;
     }
 
-    public ProduktName getName() {
+    public String getName() {
         return name;
     }
 
-    public ProduktPreis getPreis() {
+    public BigDecimal getPreis() {
         return preis;
     }
 
-    public ProduktBeschreibung getBeschreibung() {
+    public String getBeschreibung() {
         return beschreibung;
     }
 
@@ -60,26 +71,26 @@ public class Produkt {
     public static Builder Builder() { return new Builder(); }
 
     public static class Builder {
-        private ProduktName name;
-        private ProduktPreis preis;
-        private ProduktBeschreibung beschreibung;
+        private String name;
+        private BigDecimal preis;
+        private String beschreibung;
 
         private Builder () {}
 
         public Builder setProduktName(@NotNull String name) {
-            this.name = new ProduktName(name);
+            this.name = name;
 
             return this;
         }
 
         public Builder setProduktPreis(@NotNull BigDecimal preis) {
-            this.preis = new ProduktPreis(preis);
+            this.preis = preis;
 
             return this;
         }
 
         public Builder setProduktBeschreibung(String beschreibung) {
-            this.beschreibung = new ProduktBeschreibung(beschreibung);
+            this.beschreibung = beschreibung;
 
             return this;
         }

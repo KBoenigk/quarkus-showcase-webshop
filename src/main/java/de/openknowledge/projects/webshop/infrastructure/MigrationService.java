@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package de.openknowledge.projects.greet.infrastructure;
+package de.openknowledge.projects.webshop.infrastructure;
 
 import org.flywaydb.core.Flyway;
 import org.slf4j.Logger;
