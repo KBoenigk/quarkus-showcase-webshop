@@ -1,9 +1,6 @@
 package de.openknowledge.projects.webshop.domain.bestellung;
 
-import de.openknowledge.projects.webshop.domain.bestellung.filiale.Filiale;
 import de.openknowledge.projects.webshop.domain.bestellung.lieferung.LieferAdresse;
-import de.openknowledge.projects.webshop.domain.bestellung.lieferung.Lieferung;
-import de.openknowledge.projects.webshop.domain.zahlung.Zahlung;
 
 import javax.validation.ValidationException;
 import javax.validation.constraints.NotNull;
@@ -16,7 +13,7 @@ public class Bestellung {
     @NotNull
     private LieferAdresse lieferAdresse;
 
-    @NotNull
+   //@NotNull
     private RechnungsAdresse rechnungsAdresse;
 
     public Bestellung(Builder b) {
@@ -100,9 +97,9 @@ public class Bestellung {
             if (this.lieferAdresse == null) {
                 throw new ValidationException("Bestellung.Builder: Lieferadresse darf nicht null sein!");
             }
-            if (this.rechnungsAdresse == null) {
-                throw new ValidationException("Bestellung.Builder: Rechnungsadresse darf nicht null sein!");
-            }
+//            if (this.rechnungsAdresse == null) {
+//                throw new ValidationException("Bestellung.Builder: Rechnungsadresse darf nicht null sein!");
+//            }
 
             return new Bestellung(this);
         }

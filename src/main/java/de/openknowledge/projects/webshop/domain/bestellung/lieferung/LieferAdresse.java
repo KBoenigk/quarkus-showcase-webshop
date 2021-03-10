@@ -91,7 +91,7 @@ public class LieferAdresse {
             return this;
         }
 
-        public Builder setStraßBuilder(@NotNull String straßeNummer) {
+        public Builder setStraßeNummer(@NotNull String straßeNummer) {
             this.straßeNummer = new StraßeNummer(straßeNummer);
 
             return this;

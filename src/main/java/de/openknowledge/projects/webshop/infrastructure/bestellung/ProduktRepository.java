@@ -9,12 +9,17 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class ProduktRepository implements PanacheRepository<Produkt> {
 
     public List<Produkt> read() {
         return this.listAll();
+    }
+
+    public Optional<Produkt> findByProduktName(final String name) {
+        return find("name", name).firstResultOptional();
     }
 //    private final List<Produkt> produkte = new ArrayList<>();
 //
