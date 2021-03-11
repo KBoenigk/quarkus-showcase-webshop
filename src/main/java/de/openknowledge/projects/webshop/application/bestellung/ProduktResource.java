@@ -3,8 +3,6 @@ package de.openknowledge.projects.webshop.application.bestellung;
 import de.openknowledge.projects.webshop.domain.bestellung.Produkt;
 import de.openknowledge.projects.webshop.infrastructure.bestellung.ProduktRepository;
 import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.media.Content;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +33,11 @@ public class ProduktResource {
     @APIResponse(responseCode = "200", description = "Ok")
     public Response getProduktListe() {
 
+        LOG.info("Getting Produkte");
+
         List<Produkt> produktListe = repository.read();
+
+        LOG.info("{} Produkte found", produktListe.size());
 
         return Response.status(Response.Status.OK)
                 .entity(produktListe)

@@ -33,10 +33,19 @@ public class BestellApplicationService {
 
     public BestellApplicationService() { super(); }
 
+    /**
+     * Gibt alle Bestellungen zurück
+     * @return Bestellungen
+     */
     public List<Bestellung> getBestellungen() {
         return bestellRepository.read();
     }
 
+    /**
+     * Wandelt das DTO um und erzeugt eine neue Bestellung, die dem Repository hinzugefügt wird
+     * @param bestellungDTO
+     * @return
+     */
     public ZahlungsAufforderungDTO placeBestellung(BestellungDTO bestellungDTO) {
 
         Bestellung bestellung = this.convertBestellung(bestellungDTO);
@@ -58,6 +67,11 @@ public class BestellApplicationService {
         return aufforderung;
     }
 
+    /**
+     * Konvertiert ein BestellungDTO-Objekt in ein Bestellung-Objekt
+     * @param bestellungDTO
+     * @return Objekt des Typs Bestellung
+     */
     private Bestellung convertBestellung(BestellungDTO bestellungDTO) {
         List<ProduktAuswahlDTO> produktAuswahl = bestellungDTO.getProduktAuswahl();
         ProduktListe.Builder produktListeBuilder = ProduktListe.Builder();
@@ -88,6 +102,11 @@ public class BestellApplicationService {
         return bestellung;
     }
 
+    /**
+     * Erstellt ein Zahlungs-Objekt mit der übergebenen Bestellung
+     * @param bestellung
+     * @return ein neues Zahlung-Objekt
+     */
     private Zahlung createZahlung(Bestellung bestellung) {
         Zahlung zahlung = Zahlung.Builder()
                 .setBestellung(bestellung)
@@ -96,7 +115,15 @@ public class BestellApplicationService {
         return zahlung;
     }
 
+    /**
+     * Erzeugt ein neues DTO Zahlungsaufforderung mit der übergebenen Bestellung und Zahlung
+     * @param bestellung
+     * @param zahlung
+     * @return ein neues ZahlungsAufforderungDTO
+     */
     private ZahlungsAufforderungDTO createZahlungsAufforderung(Bestellung bestellung, Zahlung zahlung) {
-        return new ZahlungsAufforderungDTO(bestellung.getId().getId(), zahlung.getZahlungsId().getId(), zahlung.getBetrag().getBetrag().doubleValue());
+        return new ZahlungsAufforderungDTO(bestellung.getId().getId(),
+                                            zahlung.getZahlungsId().getId(),
+                                            zahlung.getBetrag().getBetrag().doubleValue());
     }
 }

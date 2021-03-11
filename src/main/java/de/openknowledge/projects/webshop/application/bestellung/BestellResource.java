@@ -37,7 +37,7 @@ public class BestellResource {
 
         List<Bestellung> bestellungen = this.bestellApplicationService.getBestellungen();
 
-        LOG.info("{}", bestellungen);
+        LOG.info("{} Bestellungen found", bestellungen.size());
 
         return Response.status(Response.Status.OK)
                 .entity(bestellungen)

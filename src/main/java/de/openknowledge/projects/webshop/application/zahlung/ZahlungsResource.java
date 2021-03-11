@@ -33,7 +33,7 @@ public class ZahlungsResource {
     @Operation(operationId = "getZahlungen", description = "Get all Zahlungen")
     @APIResponse(responseCode = "200", description = "Ok")
     public Response getZahlungen() {
-        LOG.info("Get Zahlungen");
+        LOG.info("Getting Zahlungen");
 
         List<Zahlung> zahlungen = this.zahlungsService.getZahlungen();
 

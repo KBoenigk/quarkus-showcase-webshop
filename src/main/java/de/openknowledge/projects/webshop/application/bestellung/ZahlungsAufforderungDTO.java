@@ -2,6 +2,7 @@ package de.openknowledge.projects.webshop.application.bestellung;
 
 import org.apache.commons.lang3.Validate;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -13,6 +14,7 @@ public class ZahlungsAufforderungDTO {
     @NotNull
     private String zahlungsID;
 
+    @Min(0)
     private double betrag;
 
     protected ZahlungsAufforderungDTO() {

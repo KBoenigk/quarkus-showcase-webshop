@@ -22,8 +22,16 @@ public class ZahlungsApplicationService {
 
     public ZahlungsApplicationService() { super(); }
 
+    /**
+     * Gibt alle Zahlungen zurück
+     * @return alle Zahlungen
+     */
     public List<Zahlung> getZahlungen() { return this.zahlungsRepository.read(); }
 
+    /**
+     * Autorisiert die Zahlung mit der zahlungs ID der übergebenen Zahlungsautorisierung
+     * @param autorisierung
+     */
     public void autorisiereZahlung(ZahlungsAutorisierungDTO autorisierung) {
 
         ZahlungsID id = new ZahlungsID(autorisierung.getZahlungsID());
