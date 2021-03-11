@@ -22,16 +22,18 @@ import java.util.Optional;
 public class BestellApplicationService {
     private static final Logger LOG = LoggerFactory.getLogger(BestellApplicationService.class);
 
-    @Inject
     private BestellRepository bestellRepository;
 
-    @Inject
     private ProduktRepository produktRepository;
 
-    @Inject
     private ZahlungsRepository zahlungsRepository;
 
-    public BestellApplicationService() { super(); }
+    @Inject
+    public BestellApplicationService(BestellRepository bestellRepository, ProduktRepository produktRepository, ZahlungsRepository zahlungsRepository) {
+        this.bestellRepository = bestellRepository;
+        this.produktRepository = produktRepository;
+        this.zahlungsRepository = zahlungsRepository;
+    }
 
     /**
      * Gibt alle Bestellungen zurück
@@ -50,9 +52,9 @@ public class BestellApplicationService {
 
         Bestellung bestellung = this.convertBestellung(bestellungDTO);
 
-        LOG.info("Bestellung placed {}", bestellung);
-
         this.bestellRepository.putBestellung(bestellung);
+
+        LOG.info("Bestellung placed {}", bestellung);
 
         Zahlung zahlung = this.createZahlung(bestellung);
 

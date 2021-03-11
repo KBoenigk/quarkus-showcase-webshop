@@ -1,0 +1,8 @@
+PRODUKT:
+  - ID: 1
+    NAME: Salat
+    PREIS: 8.9
+    BESCHREIBUNG: Ein Salat
+  - ID: 2
+    NAME: Bowl
+    PREIS: 9.99
