@@ -1,9 +1,8 @@
-package de.openknowledge.projects.webshop.application;
+package de.openknowledge.projects.webshop.application.bestellung;
 
 import org.apache.commons.lang3.Validate;
 
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 

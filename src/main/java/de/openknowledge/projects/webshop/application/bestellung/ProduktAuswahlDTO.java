@@ -17,7 +17,7 @@ public class ProduktAuswahlDTO {
     @Min(1)
     private int menge;
 
-    public ProduktAuswahlDTO() { super(); }
+    protected ProduktAuswahlDTO() { super(); }
 
     public ProduktAuswahlDTO(final String name, final int menge) {
         this();

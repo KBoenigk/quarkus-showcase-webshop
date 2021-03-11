@@ -1,4 +1,4 @@
-package de.openknowledge.projects.webshop.application;
+package de.openknowledge.projects.webshop.application.bestellung;
 
 import de.openknowledge.projects.webshop.domain.bestellung.Bestellung;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -23,17 +23,19 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
-public class BestellungResource {
-    private static final Logger LOG = LoggerFactory.getLogger(BestellungResource.class);
+public class BestellResource {
+    private static final Logger LOG = LoggerFactory.getLogger(BestellResource.class);
 
     @Inject
-    private BestellungApplicationService bestellungApplicationService;
+    private BestellApplicationService bestellApplicationService;
 
     @GET
+    @Operation(operationId = "getBestellungen", description = "Get all Bestellungen")
+    @APIResponse(responseCode = "200", description = "Ok")
     public Response getBestellungen() {
         LOG.info("Get Bestellungen");
 
-        List<Bestellung> bestellungen = this.bestellungApplicationService.getBestellungen();
+        List<Bestellung> bestellungen = this.bestellApplicationService.getBestellungen();
 
         LOG.info("{}", bestellungen);
 
@@ -51,10 +53,10 @@ public class BestellungResource {
     public Response placeBestellung(@NotNull @Valid final BestellungDTO bestellung) {
         LOG.info("Add new Bestellung {}", bestellung);
 
-        bestellungApplicationService.placeBestellung(bestellung);
+        ZahlungsAufforderungDTO aufforderung = bestellApplicationService.placeBestellung(bestellung);
 
         LOG.info("Bestellung placed");
 
-        return Response.status(Response.Status.CREATED).build();
+        return Response.status(Response.Status.CREATED).entity(aufforderung).build();
     }
 }

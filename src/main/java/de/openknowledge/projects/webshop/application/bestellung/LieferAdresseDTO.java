@@ -22,7 +22,7 @@ public class LieferAdresseDTO {
     @NotNull
     private String ort;
 
-    public LieferAdresseDTO() { super(); }
+    protected LieferAdresseDTO() { super(); }
 
     public LieferAdresseDTO(final String name, final String strasseNummer,
                             final String plz, final String ort) {
