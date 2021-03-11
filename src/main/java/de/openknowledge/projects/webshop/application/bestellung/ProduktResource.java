@@ -1,8 +1,11 @@
-package de.openknowledge.projects.webshop.application;
+package de.openknowledge.projects.webshop.application.bestellung;
 
-import de.openknowledge.projects.webshop.domain.HelloWorldObject;
 import de.openknowledge.projects.webshop.domain.bestellung.Produkt;
 import de.openknowledge.projects.webshop.infrastructure.bestellung.ProduktRepository;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +31,8 @@ public class ProduktResource {
     private ProduktRepository repository;
 
     @GET
+    @Operation(operationId = "getProdukte", description = "Get all Produkte")
+    @APIResponse(responseCode = "200", description = "Ok")
     public Response getProduktListe() {
 
         List<Produkt> produktListe = repository.read();

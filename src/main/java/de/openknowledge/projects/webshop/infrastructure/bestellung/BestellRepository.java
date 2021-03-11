@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 @ApplicationScoped
-public class BestellungRepository {
+public class BestellRepository {
 
     private final List<Bestellung> bestellungen = new ArrayList<>();
 

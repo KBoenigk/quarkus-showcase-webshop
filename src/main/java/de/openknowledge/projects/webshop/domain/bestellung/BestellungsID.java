@@ -1,14 +1,13 @@
 package de.openknowledge.projects.webshop.domain.bestellung;
 
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.UUID;
 
-public class BestellID {
+public class BestellungsID {
 
     private String id;
 
-    public BestellID() {
+    public BestellungsID() {
         this.id = UUID.randomUUID().toString();
     }
 
@@ -20,8 +19,8 @@ public class BestellID {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BestellID bestellID = (BestellID) o;
-        return id.equals(bestellID.id);
+        BestellungsID bestellungsID = (BestellungsID) o;
+        return id.equals(bestellungsID.id);
     }
 
     @Override
@@ -31,7 +30,7 @@ public class BestellID {
 
     @Override
     public String toString() {
-        return "BestellID{" +
+        return "BestellungsID{" +
                 "id='" + id + '\'' +
                 '}';
     }

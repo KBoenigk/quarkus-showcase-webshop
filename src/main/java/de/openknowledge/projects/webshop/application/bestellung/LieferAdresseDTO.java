@@ -1,4 +1,4 @@
-package de.openknowledge.projects.webshop.application;
+package de.openknowledge.projects.webshop.application.bestellung;
 
 import org.apache.commons.lang3.Validate;
 

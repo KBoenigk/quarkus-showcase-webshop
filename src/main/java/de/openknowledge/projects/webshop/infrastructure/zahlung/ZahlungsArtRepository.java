@@ -1,4 +1,4 @@
-package de.openknowledge.projects.webshop.infrastructure.zahlungsart;
+package de.openknowledge.projects.webshop.infrastructure.zahlung;
 
 import de.openknowledge.projects.webshop.domain.zahlung.ZahlungsArt;
 

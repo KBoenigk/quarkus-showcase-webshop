@@ -7,6 +7,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class Bestellung {
+
+    @NotNull
+    private BestellungsID id;
+
     @NotNull
     private ProduktListe produkte;
 
@@ -17,9 +21,14 @@ public class Bestellung {
     private RechnungsAdresse rechnungsAdresse;
 
     public Bestellung(Builder b) {
+        this.id = new BestellungsID();
         this.produkte = b.produkte;
         this.lieferAdresse = b.lieferAdresse;
         this.rechnungsAdresse = b.rechnungsAdresse;
+    }
+
+    public BestellungsID getId() {
+        return id;
     }
 
     public ProduktListe getProdukte() {
@@ -39,18 +48,19 @@ public class Bestellung {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bestellung that = (Bestellung) o;
-        return produkte.equals(that.produkte) && lieferAdresse.equals(that.lieferAdresse) && rechnungsAdresse.equals(that.rechnungsAdresse);
+        return id.equals(that.id) && produkte.equals(that.produkte) && lieferAdresse.equals(that.lieferAdresse) && Objects.equals(rechnungsAdresse, that.rechnungsAdresse);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(produkte, lieferAdresse, rechnungsAdresse);
+        return Objects.hash(id, produkte, lieferAdresse, rechnungsAdresse);
     }
 
     @Override
     public String toString() {
         return "Bestellung{" +
-                "produkte=" + produkte +
+                "id=" + id +
+                ", produkte=" + produkte +
                 ", lieferAdresse=" + lieferAdresse +
                 ", rechnungsAdresse=" + rechnungsAdresse +
                 '}';
