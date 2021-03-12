@@ -38,6 +38,10 @@ public class Zahlung {
         return id;
     }
 
+    public Bestellung getBestellung() {
+        return bestellung;
+    }
+
     public ZahlungsArt getZahlungsArt() {
         return zahlungsArt;
     }

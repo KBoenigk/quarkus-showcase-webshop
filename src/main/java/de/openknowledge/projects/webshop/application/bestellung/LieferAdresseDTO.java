@@ -28,7 +28,7 @@ public class LieferAdresseDTO {
                             final String plz, final String ort) {
         this();
         this.name = Validate.notNull(name, "Name darf nicht null sein.");
-        this.strasseNummer = Validate.notNull(name, "Strasse mit Nummer darf nicht null sein.");
+        this.strasseNummer = Validate.notNull(strasseNummer, "Strasse mit Nummer darf nicht null sein.");
         this.plz = Validate.notNull(plz, "Postleitzahl darf nicht null sein.");
         this.ort = Validate.notNull(ort, "Ort darf nicht null sein.");
     }
