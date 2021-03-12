@@ -48,7 +48,7 @@ public class Bestellung {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bestellung that = (Bestellung) o;
-        return id.equals(that.id) && produkte.equals(that.produkte) && lieferAdresse.equals(that.lieferAdresse) && Objects.equals(rechnungsAdresse, that.rechnungsAdresse);
+        return id.equals(that.id);
     }
 
     @Override

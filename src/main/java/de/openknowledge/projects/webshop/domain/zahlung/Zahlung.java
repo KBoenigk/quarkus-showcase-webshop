@@ -67,7 +67,7 @@ public class Zahlung {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Zahlung zahlung = (Zahlung) o;
-        return id.equals(zahlung.id) && bestellung.equals(zahlung.bestellung) && zahlungsArt.equals(zahlung.zahlungsArt) && betrag.equals(zahlung.betrag) && Objects.equals(autorisierung, zahlung.autorisierung) && Objects.equals(abschluss, zahlung.abschluss);
+        return id.equals(zahlung.id);
     }
 
     @Override
