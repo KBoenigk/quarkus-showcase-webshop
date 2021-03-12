@@ -45,6 +45,7 @@ public class ZahlungsResource {
     }
 
     @PUT
+    @Path("{zahlungsID}/autorisiere")
     @Operation(operationId = "autorisiereZahlung", description = "Zahlung autorisiert")
     @RequestBody(name = "zahlungsAutorisierung", required = true, content = @Content(mediaType = MediaType.APPLICATION_JSON,
             schema = @Schema(implementation = ZahlungsAutorisierungDTO.class, type = SchemaType.OBJECT)))
