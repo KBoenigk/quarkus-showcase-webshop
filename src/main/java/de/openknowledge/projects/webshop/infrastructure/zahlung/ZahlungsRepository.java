@@ -21,4 +21,10 @@ public class ZahlungsRepository {
         return this.zahlungen.stream().filter(zahlung -> id.equals(zahlung.getZahlungsId()))
                 .findAny();
     }
+
+    public void updateZahlung(Zahlung zahlung) {
+
+        this.zahlungen.remove(zahlung);
+        this.zahlungen.add(zahlung);
+    }
 }

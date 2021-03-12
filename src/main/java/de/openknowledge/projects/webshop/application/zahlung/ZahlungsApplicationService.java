@@ -42,6 +42,9 @@ public class ZahlungsApplicationService {
             throw new ValidationException("Eine Zahlung mit der ID " + id + " existiert nicht.");
         }
 
-        optional.get().setAutorisierung(new ZahlungsAutorisierung(true));
+        Zahlung zahlung = optional.get();
+        zahlung.setAutorisierung(new ZahlungsAutorisierung(true));
+
+        this.zahlungsRepository.updateZahlung(zahlung);
     }
 }
