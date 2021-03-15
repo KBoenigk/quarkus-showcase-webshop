@@ -57,7 +57,7 @@
 							"    pm.expect(tv4.validate(data, schema)).to.be.true;\r",
 							"});\r",
 							"\r",
-							"const expectedNames = [ \"Falafel Schmaus\", \"Rosinenbomber Bowl\", \"Ciabatta Sticks\", \"Bananenbrot\", \"Lemonaid Maracuja\"];\r",
+							"const expectedNames = [ \"Salat\", \"Bowl\", \"Sticks\"];\r",
 							"\r",
 							"pm.test(\"Content is valid\", function () {\r",
 							"    var data = JSON.parse(responseBody);\r",
@@ -128,7 +128,18 @@
 							"\r",
 							"    var data = JSON.parse(responseBody);\r",
 							"    pm.expect(tv4.validate(data, schema)).to.be.true;\r",
-							"});"
+							"});\r",
+							"\r",
+							"pm.test(\"Content is valid\", function () {\r",
+							"    pm.globals.clear(\"zahlungsID\");\r",
+							"    pm.globals.clear(\"bestellID\");\r",
+							"\r",
+							"    var data = JSON.parse(responseBody);\r",
+							"    pm.expect(data.betrag).to.be.eq(20.98);\r",
+							"\r",
+							"    pm.globals.set(\"zahlungsID\", data.zahlungsID);\r",
+							"    pm.globals.set(\"bestellID\", data.bestellID);\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -150,7 +161,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"lieferAdresse\": {\r\n    \"name\": \"Kim\",\r\n    \"ort\": \"Gladbeck\",\r\n    \"plz\": \"45968\",\r\n    \"strasseNummer\": \"Allmannstr. 24\"\r\n  },\r\n  \"produktAuswahl\": [\r\n    {\r\n      \"menge\": 2,\r\n      \"name\": \"Rosinenbomber Bowl\"\r\n    }\r\n  ]\r\n}"
+					"raw": "{\r\n  \"lieferAdresse\": {\r\n    \"name\": \"Kim\",\r\n    \"ort\": \"Gladbeck\",\r\n    \"plz\": \"45968\",\r\n    \"strasseNummer\": \"Allmannstr. 24\"\r\n  },\r\n  \"produktAuswahl\": [\r\n    {\r\n      \"menge\": 2,\r\n      \"name\": \"Bowl\"\r\n    },\r\n    {\r\n        \"menge\": 1,\r\n        \"name\": \"Sticks\"\r\n    }\r\n  ]\r\n}"
 				},
 				"url": {
 					"raw": "http://{{url}}/bestellung",
@@ -294,7 +305,6 @@
 							"                            },\r",
 							"                            \"required\": [\r",
 							"                                \"id\",\r",
-							"                                \"beschreibung\",\r",
 							"                                \"name\",\r",
 							"                                \"preis\"\r",
 							"                            ]\r",
@@ -324,6 +334,11 @@
 							"\r",
 							"    var data = JSON.parse(responseBody);\r",
 							"    pm.expect(tv4.validate(data, schema)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Bestellung added correctly\", function() {\r",
+							"    var data = JSON.parse(responseBody);\r",
+							"    pm.expect(data.some(bestellung => bestellung.id.id === pm.globals.get(\"bestellID\"))).to.be.true;\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -348,19 +363,50 @@
 		},
 		{
 			"name": "autorisiereZahlung",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response code is 'ok'\", function () {\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.ok;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{url}}/zahlung/{zahlungsID}/autorisiere",
+					"raw": "http://{{url}}/zahlung/:zahlungsID/autorisiere",
 					"protocol": "http",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"zahlung",
-						"{zahlungsID}",
+						":zahlungsID",
 						"autorisiere"
+					],
+					"variable": [
+						{
+							"key": "zahlungsID",
+							"value": "{{zahlungsID}}"
+						}
 					]
 				}
 			},
@@ -509,7 +555,6 @@
 							"                                },\r",
 							"                                \"required\": [\r",
 							"                                    \"id\",\r",
-							"                                    \"beschreibung\",\r",
 							"                                    \"name\",\r",
 							"                                    \"preis\"\r",
 							"                                ]\r",
@@ -558,7 +603,6 @@
 							"                }\r",
 							"            },\r",
 							"            \"required\": [\r",
-							"                \"autorisierung\",\r",
 							"                \"bestellung\",\r",
 							"                \"betrag\",\r",
 							"                \"zahlungsId\"\r",
@@ -569,6 +613,13 @@
 							"\r",
 							"    var data = JSON.parse(responseBody);\r",
 							"    pm.expect(tv4.validate(data, schema)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Zahlung should be autorisiert\", function() {\r",
+							"    var data = JSON.parse(responseBody);\r",
+							"    var expectedZahlung = data.find(zahlung => zahlung.zahlungsId.id === pm.globals.get(\"zahlungsID\"));\r",
+							"    pm.expect(expectedZahlung).not.null;\r",
+							"    pm.expect(expectedZahlung.autorisierung.autorisiert).to.be.true;\r",
 							"});"
 						],
 						"type": "text/javascript"

@@ -47,14 +47,12 @@ public class ZahlungsResource {
     @PUT
     @Path("{zahlungsID}/autorisiere")
     @Operation(operationId = "autorisiereZahlung", description = "Zahlung autorisiert")
-    @RequestBody(name = "zahlungsAutorisierung", required = true, content = @Content(mediaType = MediaType.APPLICATION_JSON,
-            schema = @Schema(implementation = ZahlungsAutorisierungDTO.class, type = SchemaType.OBJECT)))
     @APIResponse(responseCode = "200", description = "Autorisierung erfolgreich, Bestellung bestätigt")
     @APIResponse(responseCode = "400", description = "Autorisierung fehlgeschlagen")
-    public Response autorisiereZahlung(@NotNull @Valid final ZahlungsAutorisierungDTO zahlungsAutorisierung) {
+    public Response autorisiereZahlung(@PathParam("zahlungsID") final String zahlungsID) {
         LOG.info("Autorisiere Zahlung");
 
-        this.zahlungsService.autorisiereZahlung(zahlungsAutorisierung);
+        this.zahlungsService.autorisiereZahlung(zahlungsID);
 
         LOG.info("Zahlung erfolgreich autorisiert");
 

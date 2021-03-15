@@ -6,3 +6,6 @@ PRODUKT:
   - ID: 2
     NAME: Bowl
     PREIS: 9.99
+  - ID: 3
+    NAME: Sticks
+    Preis: 1

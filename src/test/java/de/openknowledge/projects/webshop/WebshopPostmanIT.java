@@ -43,7 +43,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @QuarkusTestResource(DatabaseTestResource.class)
 @DBRider
 @DataSet(value = "webshop.yml", strategy = SeedStrategy.CLEAN_INSERT, skipCleaningFor = "flyway_schema_history")
-class WebshopPostmanIT {
+                           class WebshopPostmanIT {
 
   private static final Logger LOG = LoggerFactory.getLogger(WebshopPostmanIT.class);
 

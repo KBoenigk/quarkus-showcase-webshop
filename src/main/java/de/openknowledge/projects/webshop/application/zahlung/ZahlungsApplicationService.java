@@ -30,11 +30,11 @@ public class ZahlungsApplicationService {
 
     /**
      * Autorisiert die Zahlung mit der zahlungs ID der übergebenen Zahlungsautorisierung
-     * @param autorisierung
+     * @param zahlungsID
      */
-    public void autorisiereZahlung(ZahlungsAutorisierungDTO autorisierung) {
+    public void autorisiereZahlung(String zahlungsID) {
 
-        ZahlungsID id = new ZahlungsID(autorisierung.getZahlungsID());
+        ZahlungsID id = new ZahlungsID(zahlungsID);
         Optional<Zahlung> optional
                 = this.zahlungsRepository.findZahlungByID(id);
 
