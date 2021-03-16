@@ -19,15 +19,15 @@ import java.util.List;
 @QuarkusTestResource(DatabaseTestResource.class)
 @DBRider
 @DataSet(value = "webshop.yml", strategy = SeedStrategy.CLEAN_INSERT, skipCleaningFor = "flyway_schema_history")
-public class ProduktRepositoryTest {
+public class ProduktRepositoryIT {
 
     @Inject
     private ProduktRepository repository;
 
     @Test
-    public void readShouldReturnTwoProdukte() {
+    public void readShouldReturnThreeProdukte() {
         List<Produkt> produktListe = repository.read();
-        Assertions.assertThat(produktListe.size()).isEqualTo(2);
+        Assertions.assertThat(produktListe.size()).isEqualTo(3);
     }
 
     @Test
