@@ -13,6 +13,9 @@ import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service für Zahlungen
+ */
 @ApplicationScoped
 public class ZahlungsApplicationService {
     private static final Logger LOG = LoggerFactory.getLogger(ZahlungsApplicationService.class);

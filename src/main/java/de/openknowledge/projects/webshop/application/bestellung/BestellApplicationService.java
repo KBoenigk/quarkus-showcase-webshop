@@ -18,6 +18,9 @@ import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service für Bestellungen
+ */
 @ApplicationScoped
 public class BestellApplicationService {
     private static final Logger LOG = LoggerFactory.getLogger(BestellApplicationService.class);
