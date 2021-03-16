@@ -368,10 +368,9 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Response code is 'ok'\", function () {\r",
+							"pm.test(\"Response code is 'created'\", function () {\r",
 							"\r",
-							"    pm.response.to.have.status(200);\r",
-							"    pm.response.to.be.ok;\r",
+							"    pm.response.to.have.status(201);\r",
 							"});"
 						],
 						"type": "text/javascript"

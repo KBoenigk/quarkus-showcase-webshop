@@ -45,7 +45,7 @@ public class ZahlungsResource {
     @PUT
     @Path("{zahlungsID}/autorisiere")
     @Operation(operationId = "autorisiereZahlung", description = "Zahlung autorisiert")
-    @APIResponse(responseCode = "200", description = "Autorisierung erfolgreich, Bestellung bestätigt")
+    @APIResponse(responseCode = "201", description = "Autorisierung erfolgreich, Bestellung bestätigt")
     @APIResponse(responseCode = "400", description = "Autorisierung fehlgeschlagen")
     public Response autorisiereZahlung(@PathParam("zahlungsID") final String zahlungsID) {
         LOG.info("Autorisiere Zahlung");
@@ -54,6 +54,6 @@ public class ZahlungsResource {
 
         LOG.info("Zahlung erfolgreich autorisiert");
 
-        return Response.status(Response.Status.OK).build();
+        return Response.status(Response.Status.CREATED).build();
     }
 }
