@@ -31,8 +31,13 @@ public class BestellApplicationService {
 
     private ZahlungsRepository zahlungsRepository;
 
+    public BestellApplicationService() {
+        super();
+    }
+
     @Inject
     public BestellApplicationService(BestellRepository bestellRepository, ProduktRepository produktRepository, ZahlungsRepository zahlungsRepository) {
+        this();
         this.bestellRepository = bestellRepository;
         this.produktRepository = produktRepository;
         this.zahlungsRepository = zahlungsRepository;
