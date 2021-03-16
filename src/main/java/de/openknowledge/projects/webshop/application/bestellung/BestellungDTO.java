@@ -22,6 +22,7 @@ public class BestellungDTO {
     }
 
     public BestellungDTO(final List<ProduktAuswahlDTO> produktAuswahl, final LieferAdresseDTO lieferAdresse) {
+        this();
         this.produktAuswahl = Validate.notNull(produktAuswahl, "Produktauswahl darf nicht null sein.");
         this.lieferAdresse = Validate.notNull(lieferAdresse, "Lieferadresse darf nicht null sein.");
     }

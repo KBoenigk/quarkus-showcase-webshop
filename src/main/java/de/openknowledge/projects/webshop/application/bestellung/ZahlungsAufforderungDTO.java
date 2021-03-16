@@ -6,6 +6,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
+/**
+ * Ein DTO, das eine Zahlungsaufforderung repräsentiert.
+ */
 public class ZahlungsAufforderungDTO {
 
     @NotNull

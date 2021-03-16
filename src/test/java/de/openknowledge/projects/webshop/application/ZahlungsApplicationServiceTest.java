@@ -1,28 +1,21 @@
 package de.openknowledge.projects.webshop.application;
 
 import de.openknowledge.projects.webshop.application.zahlung.ZahlungsApplicationService;
-import de.openknowledge.projects.webshop.application.zahlung.ZahlungsAutorisierungDTO;
 import de.openknowledge.projects.webshop.domain.bestellung.Bestellung;
 import de.openknowledge.projects.webshop.domain.bestellung.Produkt;
 import de.openknowledge.projects.webshop.domain.bestellung.ProduktListe;
 import de.openknowledge.projects.webshop.domain.bestellung.ProduktListenElement;
 import de.openknowledge.projects.webshop.domain.bestellung.lieferung.LieferAdresse;
 import de.openknowledge.projects.webshop.domain.zahlung.Zahlung;
-import de.openknowledge.projects.webshop.domain.zahlung.ZahlungsAutorisierung;
-import de.openknowledge.projects.webshop.domain.zahlung.ZahlungsID;
 import de.openknowledge.projects.webshop.infrastructure.zahlung.ZahlungsRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 public class ZahlungsApplicationServiceTest {
@@ -32,8 +25,6 @@ public class ZahlungsApplicationServiceTest {
 
     @Mock
     private ZahlungsRepository zahlungsRepository;
-
-    private ZahlungsAutorisierungDTO autorisierung;
 
     private Zahlung zahlung;
 
@@ -62,8 +53,6 @@ public class ZahlungsApplicationServiceTest {
 
         this.zahlung = Zahlung.Builder().setBestellung(bestellung)
                                         .build();
-
-        this.autorisierung = new ZahlungsAutorisierungDTO(this.zahlung.getZahlungsId().getId());
     }
 
     @Test
