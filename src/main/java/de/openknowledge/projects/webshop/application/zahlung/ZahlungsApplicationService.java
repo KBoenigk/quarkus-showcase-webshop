@@ -4,6 +4,7 @@ import de.openknowledge.projects.webshop.domain.zahlung.Zahlung;
 import de.openknowledge.projects.webshop.domain.zahlung.ZahlungsAutorisierung;
 import de.openknowledge.projects.webshop.domain.zahlung.ZahlungsID;
 import de.openknowledge.projects.webshop.infrastructure.zahlung.ZahlungsRepository;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,12 +19,18 @@ import java.util.Optional;
  */
 @ApplicationScoped
 public class ZahlungsApplicationService {
+
     private static final Logger LOG = LoggerFactory.getLogger(ZahlungsApplicationService.class);
 
-    @Inject
     private ZahlungsRepository zahlungsRepository;
 
     public ZahlungsApplicationService() { super(); }
+
+    @Inject
+    public ZahlungsApplicationService(final ZahlungsRepository zahlungsRepository) {
+        this();
+        this.zahlungsRepository = Validate.notNull(zahlungsRepository, "ZahlungsRepository darf nicht null sein.");
+    }
 
     /**
      * Gibt alle Zahlungen zurück
