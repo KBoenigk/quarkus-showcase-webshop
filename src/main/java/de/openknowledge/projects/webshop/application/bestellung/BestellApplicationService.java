@@ -40,7 +40,7 @@ public class BestellApplicationService {
 
     /**
      * Gibt alle Bestellungen zurück
-     * @return Bestellungen
+     * @return Bestellungen alle eingegangenen Bestellungen
      */
     public List<Bestellung> getBestellungen() {
         return bestellRepository.read();
@@ -48,8 +48,8 @@ public class BestellApplicationService {
 
     /**
      * Wandelt das DTO um und erzeugt eine neue Bestellung, die dem Repository hinzugefügt wird
-     * @param bestellungDTO
-     * @return
+     * @param bestellungDTO getätigte Bestellung
+     * @return Zahlungsaufforderung zur getätigten Bestellung
      */
     public ZahlungsAufforderungDTO placeBestellung(BestellungDTO bestellungDTO) {
 
@@ -74,8 +74,8 @@ public class BestellApplicationService {
 
     /**
      * Konvertiert ein BestellungDTO-Objekt in ein Bestellung-Objekt
-     * @param bestellungDTO
-     * @return Objekt des Typs Bestellung
+     * @param bestellungDTO umzuwandelnde Bestellung
+     * @return umgewandelte Bestellung
      */
     private Bestellung convertBestellung(BestellungDTO bestellungDTO) {
         List<ProduktAuswahlDTO> produktAuswahl = bestellungDTO.getProduktAuswahl();
@@ -109,7 +109,7 @@ public class BestellApplicationService {
 
     /**
      * Erstellt ein Zahlungs-Objekt mit der übergebenen Bestellung
-     * @param bestellung
+     * @param bestellung Bestellung, zu der eine Zahlung erstellt werden soll
      * @return ein neues Zahlung-Objekt
      */
     private Zahlung createZahlung(Bestellung bestellung) {
@@ -122,8 +122,8 @@ public class BestellApplicationService {
 
     /**
      * Erzeugt ein neues DTO Zahlungsaufforderung mit der übergebenen Bestellung und Zahlung
-     * @param bestellung
-     * @param zahlung
+     * @param bestellung bestellung zu der eine Zahlungsaufforderung erstellt werden soll
+     * @param zahlung Zahlung zu der eine Zahlungsaufforderung erstellt werden soll
      * @return ein neues ZahlungsAufforderungDTO
      */
     private ZahlungsAufforderungDTO createZahlungsAufforderung(Bestellung bestellung, Zahlung zahlung) {

@@ -33,7 +33,7 @@ public class ZahlungsApplicationService {
 
     /**
      * Autorisiert die Zahlung mit der zahlungs ID der übergebenen Zahlungsautorisierung
-     * @param zahlungsID
+     * @param zahlungsID ID der zu autorisierenden Zahlung
      */
     public void autorisiereZahlung(String zahlungsID) {
 
