@@ -17,6 +17,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * Eine Resource, die Zugriff auf Produkte bereitstellt.
+ */
 @Path("produkt")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)

@@ -2,28 +2,26 @@ package de.openknowledge.projects.webshop.application.zahlung;
 
 import de.openknowledge.projects.webshop.domain.zahlung.Zahlung;
 import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
-import org.eclipse.microprofile.openapi.annotations.media.Content;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * Eine Resource, die Zugriff auf Zahlungen bereitstellt.
+ */
 @Path("zahlung")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class ZahlungsResource {
+
     private static final Logger LOG = LoggerFactory.getLogger(ZahlungsResource.class);
 
     @Inject
